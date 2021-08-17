@@ -1,6 +1,6 @@
 #pragma once
 
-#include "job.h"
+#include "job_interface.h"
 #include "scheduler.h"
 
 #include <variant>

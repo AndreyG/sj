@@ -57,7 +57,7 @@ void BackgroundThread::Task::invoke_user_action()
     status.notify_one();
 }
 
-void BackgroundThread::Task::wait_while_in_process()
+void BackgroundThread::Task::join()
 {
     status.wait(Status::InProcess);
 #ifndef NDEBUG

@@ -31,7 +31,7 @@ private:
         bool is_cancelled() override;
         bool in_process()   override;
 
-        void wait_while_in_process();
+        void join();
 
         void invoke_user_action();
 

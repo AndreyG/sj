@@ -58,7 +58,7 @@ namespace detail
 
         ~Future()
         {
-            task_.wait_while_in_process();
+            task_.join();
             job_.remove_active_task(task_);
         }
 

@@ -19,7 +19,12 @@ namespace
 
         // IProgress
         void start() override { exec();  }
-        void stop()  override { close(); }
+
+        void stop()  override
+        {
+            close();
+            deleteLater();
+        }
     };
 
     void ProgressDialog::set_job(JobPtr job)

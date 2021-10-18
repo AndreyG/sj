@@ -2,7 +2,7 @@
 
 #include "task.h"
 
-#include <boost/intrusive/slist_hook.hpp>
+#include <boost/intrusive/list_hook.hpp>
 
 #include <stop_token>
 #include <thread>
@@ -18,7 +18,7 @@ private:
 
     class Task
         : public ITask
-        , public boost::intrusive::slist_base_hook<>
+        , public boost::intrusive::list_base_hook<>
     {
     public:
         enum class Status;

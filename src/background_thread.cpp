@@ -1,6 +1,6 @@
 #include "sj/background_thread.h"
 
-#include <boost/intrusive/slist.hpp>
+#include <boost/intrusive/list.hpp>
 
 #include <cassert>
 #include <condition_variable>
@@ -20,7 +20,7 @@ class BackgroundThread::TasksQueue
 {
     std::mutex mutex_;
     std::condition_variable_any cv_;
-    boost::intrusive::slist<Task, boost::intrusive::cache_last<true>> queue_;
+    boost::intrusive::list<Task> queue_;
 
 public:
     void  push (Task*);

@@ -3,19 +3,12 @@
 #include "job_interface.h"
 #include "background_thread.h"
 
-#include "detail/future.h"
+#include "detail/Future.h"
 
 namespace detail
 {
     class Promise : public Job
     {
-        template<std::invocable<> F>
-        struct async_tag
-        {
-            F f;
-            BackgroundThread& bg_thread;
-        };
-
     public:
         // coroutine promise_type interface
 
@@ -50,14 +43,14 @@ namespace detail
 
         // implementation of `async(...)`
 
-        template<std::invocable<> F>
-        async_tag<F> async(F f, BackgroundThread& bg_thread = g_background_thread)
+        template<std::invocable F>
+        Future<F> async(F f, BackgroundThread& bg_thread = g_background_thread)
         {
             return { std::move(f), bg_thread };
         }
 
-        template<std::invocable<> F>
-        Future<F> await_transform(async_tag<F> tag)
+        template<std::invocable F>
+        typename Future<F>::Awaiter await_transform(Future<F> tag)
         {
             return { *this, tag.bg_thread, std::move(tag.f) };
         }

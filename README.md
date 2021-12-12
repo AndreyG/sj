@@ -1,9 +1,11 @@
-Repostitory consists of 2 libraries.
+The repostitory consists of 2 libraries.
 * `sj` is collection of primitives for launching async activities, this library doesn't have external dependencies except C++20 standard library,
 * [`sj-qt`](https://github.com/AndreyG/sj/tree/master/qt-integration) contains 
    * class QScheduler -- Qt-specific implementation of [`Scheduler`](https://github.com/AndreyG/sj/blob/master/include/sj/scheduler.h#L5) interface;
-   * function `IProgress* create_progress_dialog(...)` for creating progress dialog, interface `IProgress` extends `JobOwner`;
+   * function `IProgress* create_progress_dialog(...)` for creating progress dialog, interface `IProgress` extends `JobOwner`.
 
+`sj-qt` depends on `sj` and QtWidgets.
+  
 ## Example of usage
 * CMakeLists.txt: `target_link_libraries(... sj-qt)`.
 * Somewhere in `int main(...)`:
